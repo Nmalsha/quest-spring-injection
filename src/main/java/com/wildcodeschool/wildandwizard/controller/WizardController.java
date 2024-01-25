@@ -8,11 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 public class WizardController {
 
-    private WizardRepository repository = new WizardRepository();
+
+      private final WizardRepository repository;
+
+    @Autowired
+    public WizardController(WizardRepository repository) {
+        this.repository = repository;
+    }
+
+    // private WizardRepository repository = new WizardRepository();
 
     @GetMapping("/wizards")
     public String getAll(Model model) {
